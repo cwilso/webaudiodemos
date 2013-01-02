@@ -16,7 +16,7 @@ SoundEvent.prototype.setFilter = function() {
 		factor = 1.0;
 	var value = Math.pow(2, 13 * factor);
 	this.filter.frequency.value = value;
-	this.filter.Q.value = 20 * Math.min(1.0, Math.max(0.0, ((this.x - this.initX)/(document.width - this.initX))));
+	this.filter.Q.value = 40 * Math.min(1.0, Math.max(0.0, ((this.x - this.initX)/(document.width - this.initX))));
 }
 
 SoundEvent.prototype.playSound = function() {
@@ -25,8 +25,6 @@ SoundEvent.prototype.playSound = function() {
 	sourceNode.loop = true;
 	this.filter = audioContext.createBiquadFilter();
 	this.setFilter();
-
-
 
 	sourceNode.connect( this.filter );
 	this.filter.connect( audioContext.destination );
