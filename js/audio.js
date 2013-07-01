@@ -28,18 +28,18 @@ SoundEvent.prototype.playSound = function() {
 
 	sourceNode.connect( this.filter );
 	this.filter.connect( audioContext.destination );
-	sourceNode.noteOn(0);
+	sourceNode.start(0);
 	this.sound = sourceNode;
 }
 
 SoundEvent.prototype.stopSound = function() {
 	if (this.sound)
-		this.sound.noteOff(0);
+		this.sound.stop(0);
 	this.sound = null;
 }
 
 function setupAudio() {
-	audioContext = new webkitAudioContext();
+	audioContext = new AudioContext();
 
 	var request = new XMLHttpRequest();
 	request.open("GET", "sounds/techno.wav", true);
