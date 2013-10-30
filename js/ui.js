@@ -35,7 +35,8 @@ function draw() {
   ctx.save();
   ctx.strokeStyle = "#006644";
   ctx.beginPath();
-  ctx.setLineDash([5]);
+  if (ctx.setLineDash)
+    ctx.setLineDash([5]);
   ctx.moveTo(0,64);
   ctx.lineTo(512,64);
   ctx.stroke();
@@ -127,5 +128,5 @@ function findFirstPositiveZeroCrossing(buf, buflen) {
 }
 
 function dutycyclechange() {
-  pwmOsc.setDutyCycle(parseFloat(document.getElementById("dutycycle").value));
+  pwmOsc.setDutyCycle(1-parseFloat(document.getElementById("dutycycle").value));
 }
