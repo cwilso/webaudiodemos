@@ -73,7 +73,10 @@ function setupAudio( obj ) {
 	audioContext = new AudioContext();
 
 	obj.analyser = audioContext.createAnalyser();
-	obj.analyser.fftSize = 1024;
+	obj.analyser.fftSize = 2048;
+
+	myOscilloscope = new Oscilloscope(obj.analyser, 512, 256);
+
 /*
 	osc = audioContext.createOscillator();
 	osc.type = "sawtooth";
