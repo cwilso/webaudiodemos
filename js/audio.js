@@ -8,7 +8,7 @@ function SoundEvent( e ) {
 }
 
 SoundEvent.prototype.setFilter = function() {
-	var factor = 1.0 - ((this.y - this.initY) / (document.height - this.initY));
+	var factor = 1.0 - ((this.y - this.initY) / (document.body.clientHeight - this.initY));
 
 	if (factor < 0)
 		factor = 0.0;
@@ -16,7 +16,7 @@ SoundEvent.prototype.setFilter = function() {
 		factor = 1.0;
 	var value = Math.pow(2, 13 * factor);
 	this.filter.frequency.value = value;
-	this.filter.Q.value = 40 * Math.min(1.0, Math.max(0.0, ((this.x - this.initX)/(document.width - this.initX))));
+	this.filter.Q.value = 40 * Math.min(1.0, Math.max(0.0, ((this.x - this.initX)/(document.body.clientWidth - this.initX))));
 }
 
 SoundEvent.prototype.playSound = function() {
@@ -39,6 +39,7 @@ SoundEvent.prototype.stopSound = function() {
 }
 
 function setupAudio() {
+	window.AudioContext = window.AudioContext || window.webkitAudioContext;
 	audioContext = new AudioContext();
 
 	var request = new XMLHttpRequest();
