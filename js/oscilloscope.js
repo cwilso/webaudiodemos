@@ -44,12 +44,10 @@ Oscilloscope.prototype.draw = function (context) {
 	context.strokeStyle = "white";
 
 	context.beginPath();
-	context.moveTo(0,(256-data[0])*scaling);
 
 	var zeroCross = findFirstPositiveZeroCrossing(data, this.width);
-	if (zeroCross==0)
-		zeroCross=1;
 
+	context.moveTo(0,(256-data[zeroCross])*scaling);
 	for (var i=zeroCross, j=0; (j<(this.width+zeroCross)&&(i<data.length)); i++, j++)
 		context.lineTo(j,(256-data[i])*scaling);
 
