@@ -50,7 +50,7 @@ Oscilloscope.prototype.draw = function (context) {
 	if (zeroCross==0)
 		zeroCross=1;
 
-	for (var i=zeroCross, j=0; (j<(this.width+zeroCross)&&(i<data.length)); i++, j++)
+	for (var i=zeroCross, j=0; (j<this.width)&&(i<data.length); i++, j++)
 		context.lineTo(j,(256-data[i])*scaling);
 
 	context.stroke();
