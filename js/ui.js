@@ -52,7 +52,7 @@ function draw() {
 }
 
 function onPointerDown(e) {
-  e.preventDefault();
+//  e.preventDefault();
   appendOutput(e.type + ' [' + e.pointerId + '] ' + e.clientX + ", " + e.clientY );
 
   for (var i=0; i<touches.length; i++) {
@@ -83,7 +83,7 @@ function onPointerMove(e) {
 
 function onPointerUp(e) { 
   // Prevent the browser from doing its default thing (scroll, zoom)
-  e.preventDefault();
+//  e.preventDefault();
 
   appendOutput(e.type + ' [' + e.pointerId + '] ' + e.clientX + ", " + e.clientY );
 
@@ -109,12 +109,17 @@ function setupCanvas() {
   document.body.appendChild( container );
   container.appendChild(canvas);	
 
+  canvas.setAttribute("touch-action","none");
   c.strokeStyle = "#ffffff";
   c.lineWidth =2;
-  canvas.addEventListener( 'pointerdown', onPointerDown, false );
-  canvas.addEventListener( 'pointermove', onPointerMove, false );
-  canvas.addEventListener( 'pointerup', onPointerUp, false );
-  canvas.addEventListener( 'pointerleave', onPointerUp, false );
+  canvas.addEventListener( 'down', onPointerDown, false );
+
+  PolymerGestures.addEventListener(canvas, "track", onPointerMove);
+
+  canvas.addEventListener( 'track', onPointerMove, false );
+//  canvas.addEventListener( 'mousemove', onPointerMove, false );
+  canvas.addEventListener( 'up', onPointerUp, false );
+//  canvas.addEventListener( 'pointerleave', onPointerUp, false );
 
 }
 

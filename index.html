@@ -40,7 +40,7 @@
         overflow: scroll;
       }
     </style>
-    <script src="js/pointerevents.js"></script>
+    <script src="js/polymer-gestures.js"></script>
     <script src="js/ui.js"></script>
     <script src="js/audio.js"></script>
   </head>
@@ -51,7 +51,7 @@
       </div>
     </div>
 -->
-    <div id="output" style="position: absolute; width: 100%; z-index: 1000; height: 100px; bottom: 0px; left:0px"></div>
+    <div id="output" touch-action="none" style="position: absolute; width: 100%; z-index: 1000; height: 100px; bottom: 0px; left:0px"></div>
     <script>
       var events = [
         // base events
