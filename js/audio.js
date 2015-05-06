@@ -18,10 +18,10 @@ function stop(time) {
 }
 
 function createDCOffset() {
-	var buffer=audioContext.createBuffer(1,1024,audioContext.sampleRate);
+	var buffer=audioContext.createBuffer(1,1,audioContext.sampleRate);
 	var data = buffer.getChannelData(0);
-	for (var i=0; i<1024; i++)
-		data[i]=1.0;
+	for (var i=0; i<1; i++)
+		data[i]=1;
 	var bufferSource=audioContext.createBufferSource();
 	bufferSource.buffer=buffer;
 	bufferSource.loop=true;
