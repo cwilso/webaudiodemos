@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Web Audio Demos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="cwilso@google.com">
+
+    <!-- Le styles -->
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Varela' rel='stylesheet' type='text/css'>
+    <style type="text/css">
+      #topbar { 
+        background: #222; 
+        color: white; 
+        padding: 0.25em;
+        flex-shrink: 0; 
+        margin: 0;
+        font: 1.75em/100% 'Varela', sans-serif; 
+      }
+      #topbar a { font-size: 0.5em;}
+      #title { color: orange; }
+      .disclaimer { 
+        display:none; clear: both; font: 0.6em "Noto Sans", sans-serif; color: gray; padding: 0.25em 1em 0;}
+
+      html { width: 100%; height: 100%; padding: 0 0; margin: 0 0;}
+      body { width: 100%; height: 100%; padding: 0 0; margin: 0 0;
+             display: flex;
+            flex-direction: column;}
+      #scroller {
+        flex-shrink: 1;
+        overflow: scroll;
+        width: 100%;
+      }
+      #contact { float:right; color: white;}
+      #apps {
+        padding: 0.25em;
+        font-family: "Noto Sans", sans-serif;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+      }
+      #apps>div {
+        margin: 0.25em 0.25em;
+        border:1px solid lightgray;
+        border-radius: 10px;
+        background: #eee;
+        padding: 0.5em 0.5em;
+        max-width: 15em;
+      }
+      h2 {
+        margin-top: 0em;
+        margin-bottom: 0.5em;
+        font-size: 1.25em;
+      }
+      .audio:after { content: " (a)";}
+      .input:after { content: " (i)";}
+      .touch:after { content: " (t)";}
+      .midi:after { content: " (m)";}
+
+      .audio.input:after { content: " (a,i)";}
+      .audio.touch:after { content: " (a,t)";}
+      .audio.midi:after { content: " (a,m)";}
+      .audio.input.midi:after { content: " (a,i,m)"; }
+
+      @media only screen and (max-device-width: 600px) {
+        #apps>div {
+          width: 42%;
+          border:1px solid lightgray;
+          border-radius: 10px;
+          background: #eee;
+          /* flex-grow: 1; */
+        }
+        #apps {
+          justify-content: space-around;
+        }
+      }
+/*      .input:after { content: " {A}"; font: 1em WebDings, symbol;}
+      .audio:after { content: " {A}"; font: 1em WebDings, symbol;}
+      .touch:after { content: " {A}"; font: 1em WebDings, symbol;}
+      .midi:after { content: " ";}
+      .test { font: 1em WebDings, symbol;}
+*/    </style>
+
+    <!-- Le fav and touch icons 
+    <link rel="shortcut icon" href="/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png"> -->
+  </head>
+
+  <body>
+    <div id="topbar"> <span id="title">Web Audio Demos</span> 
+      <a id="contact" href="mailto:cwilso@google.com">Contact</a>
+    </div>
+
+    <div id="scroller">
+    <div id="apps">
+      <!--
+      <div>
+        <h2 class="audio input"><a href="http://webaudioplayground.appspot.com/">Playground</a></h2>
+        <div>The Web Audio Playground helps developers visualize how the graph nodes in the Web Audio API work.  Shown at I/O 2012.</div>
+      </div>
+      <div>
+        <h2 class="midi audio input"><a href="Vocoder/index.html">Vocoder</a></h2>
+        <div>This complex audio processing app (shown at I/O 2012) implements a 28-band <a href="http://en.wikipedia.org/wiki/Vocoder">vocoder</a> - a "robotic voice" processor.</div>
+      </div>
+      <div>
+        <h2 class="audio midi"><a href="midi-synth/index.html">"Analog" Synth</a></h2>
+        <div>This application implements a polyphonic "analog" synthesizer, with a classic voice architecture.  Playable via Web MIDI or onscreen keyboard.  /// mostly copied from the Moog Prodigy (minus OSC sync, and with reverb and drive thrown in).  It's not an emulation of the Prodigy (I've never directly played one), just as a generic synth example.  Although a large part of the reason I wrote this was to test out the Web MIDI API (and the synth is playable and controllable through MIDI), you can use the onscreen UI and computer keyboard to play - the ASDF row is the major C scale, with the black notes above. </div>
+      </div>
+      <div>
+        <h2 class="audio input"><a href="input/index.html">Input Effects</a></h2>
+        <div>This demo lets you play with a few common effects on the audio inputs.</div>
+      </div>
+      <div>
+        <h2 class="audio input"><a href="AudioRecorder/index.html">AudioRecorder</a></h2>
+        <div>This is sample code for recording audio from live input and downloading them as WAV files, built on Matt Diamond's excellent <a href="https://github.com/mattdiamond/Recorderjs">RecorderJS</a>.</div>
+      </div>
+    -->
+      <div>
+        <h2 class="audio"><a href="oscilloscope/index.html">Oscilloscope</a></h2>
+        <div>Oscilloscope waveform display for Web Audio, and pulse-width duty cycle control on a square wave.</div>
+      </div>
+      <!--
+      <div>
+        <h2 class="audio midi"><a href="monosynth/index.html">Monosynth</a></h2>
+        <div>Example of a monophonic Web MIDI/Web Audio synth, with no UI.</div>
+      </div>
+      <div>
+        <h2 class="audio midi"><a href="wubwubwub/index.html">wubwubwub</a></h2>
+        <div>This application implements a dual DJ deck, specifically intended to be driven by a Numark MIDI controller.  </div>
+      </div>
+      <div>
+        <h2 class="input"><a href="pitchdetect/index.html">Pitch Detection</a></h2>
+        <div>This application performs monophonic autocorrelating pitch detection in realtime.  This is suitable for a guitar tuner or other complex waveform source.</div>
+      </div>
+      <div>
+        <h2 class="midi"><a href="conway/index.html">The Game of Life</a></h2>
+        <div>Conway's Game of Life, on an 8x8 grid, interfacing with a Novation Launchpad controller via Web MIDI.</div>
+      </div>
+      <div>
+        <h2 class="audio midi"><a href="MIDIDrums/index.html">Happy Drums</a></h2>
+        <div>Quick addition of MIDI controller support (using a Livid Instruments CNTRLR) to the <a href="http://chromium.googlecode.com/svn/trunk/samples/audio/shiny-drum-machine.html">Shiny Drum Machine</a>.</div>
+      </div>
+      <div>
+        <h2 class="audio midi"><a href="SynthTemplate/index.html">TemplateSynth</a></h2>
+        <div>Simple template for Web Audio synths, with a polyphonic voice architecture, on-screen keyboard (including touch), and Web MIDI.</div>
+      </div>
+    -->
+      <div>
+        <h2 class="audio touch"><a href="TouchPad/index.html">TouchPad</a></h2>
+        <div>Pointer/multi-touch input to control Web Audio.  Load it on a touch device, touch and slide around - to open/close the filter and modify Q. </div>
+      </div>
+
+      <!--
+      <div>
+        <h2 class="input"><a href="volume-meter/index.html">Volume Meter</a></h2>
+        <div>This is a simple code example of how to properly implement a clip-detecting volume meter.</div>
+      </div>
+      <div>
+        <h2 class="audio midi"><a href="Samplr/index.html">Samplr</a></h2>
+        <div>This is an in-progress example of how to implement a sample-playback synthesizer. Eventually should support looping and voice control, but simple code example of how to properly implement a clip-detecting volume meter.</div>
+      </div>
+      <div>
+        <h2><a href="slides/index.html">Slide Deck</a></h2>
+        <div>Slide deck on Web Audio and Web MIDI.</div>
+      </div>
+    -->
+    </div>
+  </div>
+  <script>
+  if (navigator.userAgent.indexOf("Android")!=-1)
+    document.write("<style>.disclaimer {display:block!important}</style>");
+  </script>
+<!--
+      <hr>
+    <div class="hero-unit">
+        <div>This is my collection of demos of the <a href="https://dvcs.w3.org/hg/audio/raw-file/tip/webaudio/specification.html">Web Audio API</a> and the <a href="http://dvcs.w3.org/hg/audio/raw-file/tip/midi/specification.html">Web MIDI API</a>.  These demos can be found on <a href="https://github.com/cwilso">GitHub</a> also.</div>
+      </div>
+-->
+ 
+<!--
+      <footer>
+        <div>&copy; Company 2012</div>
+      </footer>
+-->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35593052-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+  </body>
+</html>
