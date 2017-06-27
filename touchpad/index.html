@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width user-scalable=no">
+    <title>TouchPad</title>
+    <style>
+      * {
+        -webkit-user-select: none;
+      }
+      body, html {
+        margin: 0;
+        height: 100%;
+        position: relative;
+      }
+      body {
+        overflow: auto;
+      }
+      #capture {
+        background-color: orange;
+        height: 300px;
+        width: 300px;
+        text-align: center;
+        -webkit-user-select: none;
+      }
+      #enterleave {
+        background-color: blue;
+        height: 150px;
+        width: 150px;
+        text-align: center;
+        vertical-align: center;
+        line-height: 150px;
+        left: 25%;
+        top: 25%;
+        position: relative;
+      }
+      #output {
+        width: 300px;
+        height: 150px;
+        overflow: scroll;
+      }
+    </style>
+    <script src="js/polymer-gestures.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/audio.js"></script>
+  </head>
+  <body>
+<!--
+    <div id="capture">
+      <div id="enterleave">
+      </div>
+    </div>
+-->
+    <div id="output" touch-action="none" style="position: absolute; width: 100%; z-index: 1000; height: 100px; bottom: 0px; left:0px"></div>
+    <script>
+      var events = [
+        // base events
+        'click',
+        'pointerdown',
+        'pointerup',
+        'pointermove',
+        'pointerover',
+        'pointerout'
+      ];
+
+      function appendOutput(inString) {
+//        var it = output.innerText;
+//        output.innerText = inString + '\n' + it;
+      }
+//      find('capture', 'output', 'enterleave');
+
+/*
+      events.forEach(function(en) {
+        capture.addEventListener(en, function(inEvent) {
+          appendOutput(inEvent.type + ' [' + inEvent.pointerId + ']');
+        });
+      });
+      enterleave.addEventListener('pointerover', function(e) {
+        appendOutput('enterleave entered');
+      });
+      enterleave.addEventListener('pointerout', function(e) {
+        appendOutput('enterleave left');
+      });
+*/
+    </script>
+  </body>
+</html>
